@@ -32,17 +32,19 @@ router.get('/all', async (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
+    const {firstName, lastName} = req.body;
+
     try {
         const newUser = await User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName
+            firstName,
+            lastName
         });
-        return res.json(newUser)
+        return res.json(newUser);
     } catch (error) {
         console.error(error)
         return res
             .status(400)
-            .json({error: "Error with creating new user."})
+            .json({error: "Error with creating a new user."})
     }
 })
 
@@ -57,8 +59,8 @@ router.put('/edit', async (req, res) => {
         })
         return res.json(user);
     } catch (error) {
-        console.error(error);
-        return
+        return console.error(error);
+        
     }
 })
 
@@ -66,15 +68,12 @@ router.delete('/delete', async (req, res) => {
     const {userId} = req.body;
     const deleteUser = await User.findByPk(userId);
 
-    // if (deleteUser) {
-    //     deleteUser.destory();
-    // }
     try{
         await deleteUser.destroy();
-        return "User Deleted"
+        return res.json("User Deleted");
     } catch (error) {
-        console.error(error);
-        return
+        return console.error(error);
+        
     }
 })
 
