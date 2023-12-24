@@ -58,8 +58,8 @@ router.post('/new', async (req, res) => {
 })
 
 router.put('/edit', async (req, res) => {
-    const {expenseId, cost, description, category, userId} = req.body;
-    const expense = await Expense.findByPk(expenseId);
+    const {id, cost, description, category, userId} = req.body;
+    const expense = await Expense.findByPk(id);
 
     try{
         await expense.update({

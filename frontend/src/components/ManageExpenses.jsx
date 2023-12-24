@@ -6,16 +6,14 @@ function ManageExpenses() {
     const [expenseData, setExpenseData] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
+    //props
+    const [type, setType] = useState("edit");
+    const [expense, setExpense] = useState({});
+    
+
     const tableHeaders = useMemo(() => {
         return ['Id', 'Name', 'Category', 'Description', 'Cost'];
     }, []);
-
-    const openModalHandler = useCallback(() => {
-        setShowModal(true);
-        document.addEventListener('click', () => {
-            setShowModal(false);
-        });
-    }, [setShowModal]);
 
     const fetchExpensesData = useCallback(async () => {
         const url = `${import.meta.env.VITE_URL}/expenses/all`;
@@ -27,7 +25,6 @@ function ManageExpenses() {
 
 
     const deleteExpense = useCallback(async (expenseId) => {
-        console.log(expenseId)
         const url = `${import.meta.env.VITE_URL}/expenses/delete`;
         const response = await fetch(url, {
             method: "DELETE",
@@ -44,6 +41,15 @@ function ManageExpenses() {
             console.error('Error')
         }
     },[fetchExpensesData])
+
+    const openModalHandler = useCallback((type) => {
+        setType(type);
+        setShowModal(true);
+        document.addEventListener('click', () => {
+            setShowModal(false);
+        });
+    }, [setShowModal]);
+
 
     useEffect(() => {
         fetchExpensesData();
@@ -68,7 +74,13 @@ function ManageExpenses() {
                             <td>{expense.description}</td>
                             <td>${expense.cost}</td>
                             <td className='edit-delete'>
-                                <button>Edit</button>
+                                <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpense(expense);
+                                    openModalHandler("edit");
+                                }}
+                                >Edit</button>
                             </td>
                             <td className='edit-delete'>
                                 <button
@@ -84,13 +96,23 @@ function ManageExpenses() {
             <div className='bottom-buttons'>
                 <button onClick={(e) => {
                     e.stopPropagation();
-                    openModalHandler();
+                    setExpense({
+                        id: "",
+                        category: "",
+                        cost: "",
+                        description: "",
+                        userId: ""
+                    })
+                    openModalHandler("create");
                 }}>Add new</button>
             </div>
             {showModal && (
                 <ExpenseModal
                     setShowModal={setShowModal}
-                    type='create'
+                    type={type}
+                    expense={expense}
+                    setExpense={setExpense}
+                    setExpenseData={setExpenseData}
                 />)}
         </>
     );
