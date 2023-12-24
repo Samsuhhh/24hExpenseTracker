@@ -1,0 +1,82 @@
+.main-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin: 0px;
+    width: 100vw;
+}
+
+.left-nav-container {
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    z-index: 2;
+}
+
+.logo {
+    border-bottom: solid 1px lightgray;
+    margin-bottom: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.pages-list {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.pages-list > span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.page-container {
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 40px;
+    width: 100%;
+}
+
+.dashboard-container, .manage-users-container, .manage-expenses-container {
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
+}
+
+.dashboard-container {
+    /* display: flex;
+    flex-direction: column; */
+    height: fit-content;
+    width: 600px;
+}
+
+.dashboard-container td:first-child {
+    width: 400px;
+}
+
+.manage-users-container {
+    /* height: 100%; */
+    width: 100%;
+}
+
+.edit-delete {
+    width: 10%;
+}
+
+/* Manage Users CSS */
+
+.manage-expenses-container {
+    height: 100%;
+    width: 100%;
+}
+
+/* Manage Expenses CSS */
