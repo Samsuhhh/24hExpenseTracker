@@ -1,12 +1,99 @@
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import '../styles/App.css';
+import ExpenseModal from './ExpenseModal';
 
-function ManageExpenses () {
+function ManageExpenses() {
+    const [expenseData, setExpenseData] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
+    const tableHeaders = useMemo(() => {
+        return ['Id', 'Name', 'Category', 'Description', 'Cost'];
+    }, []);
+
+    const openModalHandler = useCallback(() => {
+        setShowModal(true);
+        document.addEventListener('click', () => {
+            setShowModal(false);
+        });
+    }, [setShowModal]);
+
+    const fetchExpensesData = useCallback(async () => {
+        const url = `${import.meta.env.VITE_URL}/expenses/all`;
+        const response = await fetch(url);
+        const jsonData = await response.json();
+
+        setExpenseData(jsonData);
+    }, [setExpenseData])
+
+
+    const deleteExpense = useCallback(async (expenseId) => {
+        console.log(expenseId)
+        const url = `${import.meta.env.VITE_URL}/expenses/delete`;
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                // Authorization: 'Bearer YOUR_ACCESS_TOKEN'
+            },
+            body: JSON.stringify({expenseId})
+        })
+        if (response.ok) {
+            await fetchExpensesData();
+            window.alert('Expense Deleted.')
+        } else {
+            console.error('Error')
+        }
+    },[fetchExpensesData])
+
+    useEffect(() => {
+        fetchExpensesData();
+    }, [fetchExpensesData])
 
     return (
-        <div className='manage-expenses-container'>
-
-        </div>
-    )
+        <>
+            <table className='manage-expenses-container'>
+                <thead>
+                    <tr>
+                        {tableHeaders.map((col, i) => (
+                            <th key={i}>{col}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {expenseData.map((expense, i) => (
+                        <tr key={`${expense.id, i}`}>
+                            <td>{expense.id}</td>
+                            <td>{expense.User.lastName}, {expense.User.firstName}</td>
+                            <td>{expense.category}</td>
+                            <td>{expense.description}</td>
+                            <td>${expense.cost}</td>
+                            <td className='edit-delete'>
+                                <button>Edit</button>
+                            </td>
+                            <td className='edit-delete'>
+                                <button
+                                onClick={() => deleteExpense(expense.id)}
+                                >
+                                    X
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <div className='bottom-buttons'>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    openModalHandler();
+                }}>Add new</button>
+            </div>
+            {showModal && (
+                <ExpenseModal
+                    setShowModal={setShowModal}
+                    type='create'
+                />)}
+        </>
+    );
 }
 
 export default ManageExpenses;

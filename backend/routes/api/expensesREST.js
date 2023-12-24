@@ -6,16 +6,18 @@ const { User, Expense } = require('../../db/models');
 // routes start with /expenses
 
 router.get('/all', async (req, res) => {
-    try{
+    try {
         const allExpensesWithUserData = await Expense.findAll({
             include: [
                 {
                     model: User,
-                    attributes: ['firstName', 'lastName']
+                    attributes: ['firstName', 'lastName', 'id']
                 }
-            ]
-        })
-        return res.json(allExpensesWithUserData);
+            ],
+            order: [['createdAt', 'DESC']] //TODO: check
+        });
+
+        res.json(allExpensesWithUserData);
     } catch(error) {
         return console.error(error);
     }
@@ -58,7 +60,6 @@ router.post('/new', async (req, res) => {
 router.put('/edit', async (req, res) => {
     const {expenseId, cost, description, category, userId} = req.body;
     const expense = await Expense.findByPk(expenseId);
-    // const user = await User.findByPk(userId);
 
     try{
         await expense.update({
@@ -75,6 +76,7 @@ router.put('/edit', async (req, res) => {
 
 router.delete('/delete', async (req, res) => {
     const {expenseId} = req.body;
+    console.log(expenseId)
     const deleteExpense = await Expense.findByPk(expenseId);
 
     try{
@@ -82,7 +84,6 @@ router.delete('/delete', async (req, res) => {
         return res.json("Expense deleted.")
     } catch (error) {
         return console.error(error);
-        
     }
 })
 

@@ -7,6 +7,33 @@
     width: 100vw;
 }
 
+.page-container {
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 40px;
+    width: 100%;
+}
+
+.dashboard-container,
+.manage-users-container,
+.manage-expenses-container {
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
+}
+
+.bottom-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Left Nav CSS */
+
 .left-nav-container {
     align-items: center;
     box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
@@ -32,25 +59,12 @@
     width: 70%;
 }
 
-.pages-list > span:hover {
+.pages-list>span:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.page-container {
-    background-color: whitesmoke;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 40px;
-    width: 100%;
-}
-
-.dashboard-container, .manage-users-container, .manage-expenses-container {
-    border-radius: 10px;
-    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
-}
+/* Dashboard CSS */
 
 .dashboard-container {
     /* display: flex;
@@ -63,6 +77,8 @@
     width: 400px;
 }
 
+/* Manage Users CSS */
+
 .manage-users-container {
     /* height: 100%; */
     width: 100%;
@@ -72,11 +88,39 @@
     width: 10%;
 }
 
-/* Manage Users CSS */
+/* Manage Expenses CSS */
 
 .manage-expenses-container {
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
 }
 
-/* Manage Expenses CSS */
+/* Edit Expense Modal CSS */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-expense-fields-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+}
