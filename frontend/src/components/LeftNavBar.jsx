@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import '../styles/App.css';
 
-function LeftNavBar (props) {
+function LeftNavBar(props) {
 
     const { currPage, setCurrPage } = props;
 
@@ -12,11 +12,12 @@ function LeftNavBar (props) {
     return (
         <div className='left-nav-container'>
             <div className='logo'>
-                Glaze
+                LeanData: Samuel Suh
             </div>
             <div className='pages-list'>
-                {pagesList.map((page) => (
+                {pagesList.map((page, i) => (
                     <span
+                        key={i}
                         onClick={() => setCurrPage(page)}
                         style={{
                             color: currPage === page ? 'green' : 'black'

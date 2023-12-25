@@ -99,11 +99,9 @@ function ExpenseModal(props) {
                         value={expense.userId}
                         onChange={(e) => handleUpdateExpense("userId", e.target.value, expense)}
                     >
-                        <option
-                            value=""
-                        >Select User</option>
-                        {userNames.map(user => (
-                            <option value={user.id}>{`${user.lastName}, ${user.firstName}`}</option>
+                        <option key={'0'} value="">Select User</option>
+                        {userNames.map((user, i) => (
+                            <option key={i + 1} value={user.id}>{`${user.lastName}, ${user.firstName}`}</option>
                         ))}
                     </select>
                     <textarea
