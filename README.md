@@ -104,6 +104,13 @@ Please use this image ([Imgur](https://i.imgur.com/Kq3T2p6.png)) for reference, 
 ### WE MADE IT! You are now free to explore the functionality of my Expense Tracker application. I hope you enjoy it as much as I did creating it!
 
 
+
+###### If for some reason you could not get the postgresql server connected and running, this solution was how I ran my local environment before some code updates:
+1. Mavigate to the /backend/app.js file.
+2. Comment back in lines 57 - 79. [Imgur](https://i.imgur.com/laucagu.png)
+3. Repeat step 3b except update the user and database values in the new Client object found on lines58-63 in app.js.
+4. If you need assistance, please feel free to contact me at 408-206-3559 or by email at suhvivor24@gmail.com and I will literally drop what I'm doing to help get it up and running.
+
 Some honest comments about my project:
 I spent a lot of the alloted time on finishing the MVPs of the project and planned to improve styling, update code structure, and implement pagination after completing all the base requirements. Unfortunately, I ran into a lot of issues when trying to host Postgresql through heroku and was not able to reach my goals. I truly wanted to impress with my frontend capabilities, but the form stylings and overall css does not meet my standards, but I hope the functionality is enough to impress. I'm still extremely proud of what I've built, but I was striving to go above and beyond your expectations so I apologize I couldn't do that for you this time around but hope I can show you my full capabilities in the future!
 
