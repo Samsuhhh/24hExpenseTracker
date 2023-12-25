@@ -5,24 +5,21 @@ Summary & Tradeoffs/Considerations
 ------
 #### Expense Tracker:
 - I have designed and developed a blazing fast Expense Tracker application with the following features:
-   1. User Management: Create, Edit, Delete users
+   1. User Management: Create, Edit, Delete users: [Imgur](https://i.imgur.com/O6DxBN0.png)
       - Forms with required elements/fields
       - Cascading changes for related data when editing, creating, or deleting a User.
       - Users table following required read-only column for total cost of that user and more.
-[Imgur](https://i.imgur.com/O6DxBN0.png)
 
-   2. Expense Management: Create, Edit, Delete expenses
+
+   2. Expense Management: Create, Edit, Delete expenses: [Imgur](https://i.imgur.com/LSe32Ij.png)
       - Forms for adding/editing an expense
       - Cascade effects for changed data values
-[Imgur](https://i.imgur.com/LSe32Ij.png)
 
-   3. Total Cost By Category
+
+   3. Total Cost By Category: [Imgur](https://i.imgur.com/PJ3UuMR.png)
       - This is in the Dashboard component and aggregates the costs of each category for all users.
       - These values update automatically as you add/change Expense or User data.          
-[Imgur](https://i.imgur.com/PJ3UuMR.png)
 
-Some honest comments about my project:
- - I spent a lot of the alloted time on finishing the MVPs of the project and planned to fix styling, update code structure, and implement pagination after completing all the base requirements. Unfortunately, I ran into a lot of issues when trying to host Postgresql through heroku and was not able to reach my goals. I truly wanted to impress with my frontend capabilities, but the form stylings and overall css does not meet my standards, but I hope the functionality is enough to impress. I'm still extremely proud of what I've built, but I was striving to go above and beyond your expectations so I apologize I couldn't do that for you this time around.  
 
 #### Database considerations: MySQL vs Postgres vs SQLite3
 - Before choosing a database, I did thorough research on the tradeoffs between the above options.
@@ -63,9 +60,9 @@ This guide provides clear instructions on setting up a local development environ
         "dialect": "postgres"
         },
         ```
-Please use this image for reference, but note that the the host value is defaulted to "127.0.0.1" if you are running it on your localhost, but this may differ so please double check.
+        
+Please use this image ([Imgur](https://i.imgur.com/Kq3T2p6.png)) for reference, but note that the the host value is defaulted to "127.0.0.1" if you are running it on your localhost, but this may differ so please double check.
 
-[Imgur](https://i.imgur.com/Kq3T2p6.png)
 ###### Notice that the username and database values in the picture reflects what is seen on Postgres.app
 
 ### 4a. Create a .env file in the BACKEND directory.
@@ -105,3 +102,9 @@ Please use this image for reference, but note that the the host value is default
         npm run dev
         ```
 ### WE MADE IT! You are now free to explore the functionality of my Expense Tracker application. I hope you enjoy it as much as I did creating it!
+
+
+Some honest comments about my project:
+I spent a lot of the alloted time on finishing the MVPs of the project and planned to improve styling, update code structure, and implement pagination after completing all the base requirements. Unfortunately, I ran into a lot of issues when trying to host Postgresql through heroku and was not able to reach my goals. I truly wanted to impress with my frontend capabilities, but the form stylings and overall css does not meet my standards, but I hope the functionality is enough to impress. I'm still extremely proud of what I've built, but I was striving to go above and beyond your expectations so I apologize I couldn't do that for you this time around but hope I can show you my full capabilities in the future!
+
+
