@@ -9,7 +9,9 @@ module.exports = {
     dialect: "postgres",
     seederStorage: "sequelize",
     logQueryParameters: true,
-    typeValidation: true
+    typeValidation: true,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -20,7 +22,6 @@ module.exports = {
         require: true,
         rejectUnauthorized: false
       }
-    },
-    seedersPath: '../db/seeders'
+    }
   }
 };
