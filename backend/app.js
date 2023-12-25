@@ -54,30 +54,7 @@ app.use((err, _req, res, _next) => {
     });
 }); 
 
-// // Connection configuration
-// const client = new Client({
-//     user: 'samsuh',
-//     host: '127.0.0.1',
-//     database: 'samsuh',
-//     password: '',
-//     port: '5432', // Default PostgreSQL port is 5432 // Express: 8000 // FE: 5173
-// });
-  
-  
-// // Connect to the PostgreSQL database
-// client.connect()
-//   .then(() => console.log('Connected to PostgreSQL'))
-//   .catch(err => console.error('Connection error', err.stack));
 
-// // Example query
-// client.query('SELECT * FROM Users', (err, res) => {
-//   if (err) {
-//     console.error(err);
-//     return;
-//   }
-//   console.log(res.rows);
-//   client.end(); // Close the connection
-// });
 
 
 
