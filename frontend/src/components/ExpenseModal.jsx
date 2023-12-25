@@ -58,6 +58,9 @@ function ExpenseModal(props) {
         fetchUserNames();
     }, [fetchUserNames])
 
+    if (!userNames || !userNames.length) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="modal-overlay">

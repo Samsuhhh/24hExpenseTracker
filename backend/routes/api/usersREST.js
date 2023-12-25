@@ -22,6 +22,7 @@ router.get('/all', async (req, res) => {
             },
           ],
           group: ["User.id"], // Group by User.id to calculate sum per user
+          order: [["createdAt", "ASC"]]
         });
     
         return res.json(users);
@@ -49,8 +50,8 @@ router.post('/new', async (req, res) => {
 })
 
 router.put('/edit', async (req, res) => {
-    const {firstName, lastName, userId} = req.body;
-    const user = await User.findByPk(userId);
+    const {firstName, lastName, id} = req.body;
+    const user = await User.findByPk(id);
 
     try{
         await user.update({

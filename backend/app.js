@@ -5,6 +5,7 @@ const { environment } = require('./config');
 const cors = require('cors');
 const { ValidationError } = require('sequelize');
 const { Client } = require('pg');
+const env = process.env.POSTGRES_USER || '';
 
 //local dev so no production
 const isProduction = environment === 'production';

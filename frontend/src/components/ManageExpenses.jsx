@@ -55,6 +55,11 @@ function ManageExpenses() {
         fetchExpensesData();
     }, [fetchExpensesData])
 
+    if (!expenseData || !expenseData.length) {
+        return <div>Loading...</div>;
+    }
+
+
     return (
         <>
             <table className='manage-expenses-container'>
