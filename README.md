@@ -1,4 +1,6 @@
-Thank you for the opportunity to participate in the takehome portion of LeanData's interview process!
+Expense Tracker 24h Take home assignment 
+- Meet MVPs
+- 24 hours to complete
 ======
 
 Summary & Tradeoffs/Considerations
