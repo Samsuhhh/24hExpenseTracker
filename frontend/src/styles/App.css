@@ -124,3 +124,12 @@
     flex-direction: column;
     min-width: 500px;
 }
+
+textarea {
+    box-sizing: border-box;    
+    height: 100px;
+    width: 100%;
+    resize: none;
+    font-family: inherit;
+    font-size: 12px;
+}

@@ -5,35 +5,43 @@ const { User, Expense } = require('../../db/models');
 
 // routes start with /users
 
+
 // get all users with associated totalCost
 router.get('/all', async (req, res) => {
+
     try {
         const users = await User.findAll({
-          attributes: [
-            'id',
-            'firstName',
-            'lastName',
-            [Sequelize.fn('SUM', Sequelize.col("Expenses.cost")), 'totalExpense'],
-          ],
-          include: [
-            {
-              model: Expense,
-              attributes: [],
-            },
-          ],
-          group: ["User.id"], // Group by User.id to calculate sum per user
-          order: [["createdAt", "ASC"]]
+            attributes: [
+                'id',
+                'firstName',
+                'lastName',
+                [Sequelize.fn('SUM', Sequelize.col("Expenses.cost")), 'totalExpense']
+            ],
+            include: [
+                {
+                    model: Expense,
+                    attributes: [],
+                    duplicating: false, // do not duplicate user model (for pagination)
+                    required: false // use LEFT OUTER JOIN (for pagination)
+                },
+            ],
+            group: ["User.id"], // Group by User.id to calculate sum per user
+            order: [["createdAt", "ASC"]],
+            subQery: false,
+            // limit: 4
+            // limit = size (# on page)
+            // offset = page * size 
         });
-    
+
         return res.json(users);
-      } catch (error) {
+    } catch (error) {
         console.error('Error in fetching users with total expense:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
-      }
+    }
 })
 
 router.post('/new', async (req, res) => {
-    const {firstName, lastName} = req.body;
+    const { firstName, lastName } = req.body;
 
     try {
         const newUser = await User.create({
@@ -45,15 +53,15 @@ router.post('/new', async (req, res) => {
         console.error(error)
         return res
             .status(400)
-            .json({error: "Error with creating a new user."})
+            .json({ error: "Error with creating a new user." })
     }
 })
 
 router.put('/edit', async (req, res) => {
-    const {firstName, lastName, id} = req.body;
+    const { firstName, lastName, id } = req.body;
     const user = await User.findByPk(id);
 
-    try{
+    try {
         await user.update({
             firstName,
             lastName
@@ -61,20 +69,20 @@ router.put('/edit', async (req, res) => {
         return res.json(user);
     } catch (error) {
         return console.error(error);
-        
+
     }
 })
 
 router.delete('/delete', async (req, res) => {
-    const {userId} = req.body;
+    const { userId } = req.body;
     const deleteUser = await User.findByPk(userId);
 
-    try{
+    try {
         await deleteUser.destroy();
         return res.json("User Deleted");
     } catch (error) {
         return console.error(error);
-        
+
     }
 })
 

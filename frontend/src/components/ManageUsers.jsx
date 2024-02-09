@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import '../styles/App.css';
 import UserModal from './UserModal';
+import PageSelector from './PageSelector';
 
 function ManageUsers() {
     const [firstName, setFirstName] = useState('');
@@ -90,7 +91,7 @@ function ManageUsers() {
                 </thead>
                 <tbody>
                     {userData.map((user, i) => (
-                        <tr key={`${i, user.firstName}`}>
+                        <tr key={user.id}>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
                             <td>${user.totalExpense ?? 0}</td>
@@ -142,6 +143,7 @@ function ManageUsers() {
                     </tr>
                 </tbody>
             </table>
+            {/* <PageSelector/> */}
             {showModal && (
                 <UserModal
                     setShowModal={setShowModal}

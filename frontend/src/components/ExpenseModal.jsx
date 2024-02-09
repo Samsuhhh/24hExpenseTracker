@@ -2,11 +2,11 @@ import { useCallback, useState, useEffect } from 'react';
 import '../styles/App.css';
 
 function ExpenseModal(props) {
-    const { setShowModal, type, expense, setExpense, setExpenseData } = props;
+    const { setShowModal, type, expense, setExpense, setExpenseData, setPageNum } = props;
 
     const [userNames, setUserNames] = useState([]);
 
-    const fetchUserNames = useCallback(async () => { //TODO
+    const fetchUserNames = useCallback(async () => { // dropdown menu in modal
         const url = `${import.meta.env.VITE_URL}/users/all`;
         const response = await fetch(url);
         const jsonData = await response.json();
@@ -15,10 +15,10 @@ function ExpenseModal(props) {
     }, [setUserNames])
 
     const fetchExpensesData = useCallback(async () => {
-        const url = `${import.meta.env.VITE_URL}/expenses/all`;
+        const url = `${import.meta.env.VITE_URL}/expenses/all?page=${0}&size=${10}`;
         const response = await fetch(url);
         const jsonData = await response.json();
-
+        setPageNum(0)
         setExpenseData(jsonData);
     }, [setExpenseData])
 

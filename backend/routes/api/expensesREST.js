@@ -5,21 +5,48 @@ const { User, Expense } = require('../../db/models');
 
 // routes start with /expenses
 
+const getPagination = (page, size) => {
+    console.log(page, size, 'NANANA')
+    const limit = size ? +size : 10;
+    const offset = page ? +page * limit : 0;
+
+    return { limit, offset};
+}
+
+const getPagingData = (data, page, limit) => {
+    const {count: totalItems, rows: expense} = data;
+    const currPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems/limit);
+    // console.log( {totalItems, expense, totalPages, currPage}, 'hi')
+    return {totalItems, expense, totalPages, currPage};
+}
+
 router.get('/all', async (req, res) => {
+    const {page, size } = req.query;
+    const vals = getPagination(page, size);
+    const {limit, offset} = vals;
+    console.log(limit, offset, 'SAMAM')
+
     try {
-        const allExpensesWithUserData = await Expense.findAll({
+        const allExpensesWithUserData = {count, rows} = await Expense.findAndCountAll({
+            // limit: 4,
+            limit,
+            offset,
             include: [
                 {
                     model: User,
                     attributes: ['firstName', 'lastName', 'id']
                 }
             ],
-            order: [['createdAt', 'DESC']] //TODO: check
-        });
-
-        res.json(allExpensesWithUserData);
+            order: [['createdAt', 'DESC']],
+            
+        })
+        const data = getPagingData(allExpensesWithUserData, page, limit)
+        // console.log(allExpensesWithUserData, 'yo')
+        res.json(data);
     } catch(error) {
-        return console.error(error);
+        console.error(error);
+        res.status(500).json({error: 'Sam\'s pagination error'})
     }
 })
 

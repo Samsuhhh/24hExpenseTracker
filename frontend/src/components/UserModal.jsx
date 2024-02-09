@@ -4,9 +4,7 @@ import '../styles/App.css';
 function UserModal(props) {
 
     const { setShowModal, setCurrUser, currUser, setUserData } = props;
-    // useEffect(() => {
 
-    // }, [])  
     const fetchUserNames = useCallback(async () => { //TODO
         const url = `${import.meta.env.VITE_URL}/users/all`;
         const response = await fetch(url);
@@ -43,9 +41,6 @@ function UserModal(props) {
         setCurrUser({ ...clone });
     }, [setCurrUser])
 
-    // if (!userNames || !userNames.length) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
         <div className="modal-overlay">
