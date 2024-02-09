@@ -68,7 +68,6 @@ function ManageExpenses() {
         } else {
             window.alert("No more pages")
         }
-        console.log(pageNum)
     };
 
     const goToPreviousPage = () => {
@@ -77,7 +76,6 @@ function ManageExpenses() {
         } else {
             window.alert("No more pages")
         }
-        console.log(pageNum)
     };
 
 

@@ -19,7 +19,7 @@ function ExpenseModal(props) {
         const response = await fetch(url);
         const jsonData = await response.json();
         setPageNum(0)
-        setExpenseData(jsonData);
+        setExpenseData(jsonData.expense);
     }, [setExpenseData])
 
     const handleUpdateExpense = useCallback((key, value, expense) => {
@@ -50,6 +50,8 @@ function ExpenseModal(props) {
         if (response.ok) {
             await fetchExpensesData();
             setShowModal(false);
+        } else {
+            console.error("response not okay")
         }
 
     }, [type, expense])
