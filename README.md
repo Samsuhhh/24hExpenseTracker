@@ -1,4 +1,6 @@
-Thank you for the opportunity to participate in the takehome portion of LeanData's interview process!
+Expense Tracker 24h Take home assignment 
+- Meet MVPs
+- 24 hours to complete
 ======
 
 Summary & Tradeoffs/Considerations
@@ -81,7 +83,7 @@ Please use this image ([Imgur](https://i.imgur.com/Kq3T2p6.png)) for reference, 
         ```
 ### 5. Migrate the database using sequelize-cli to make sure you set everything up correctly:
         ```
-        npx dotenv sequelize db:migrate:all
+        npx dotenv sequelize db:migrate
         ```
 ###### - You can check if you've done it correctly by using this command to see if the migrations successfully executed their 'up'-load:
         ```
@@ -102,9 +104,4 @@ Please use this image ([Imgur](https://i.imgur.com/Kq3T2p6.png)) for reference, 
         npm run dev
         ```
 ### WE MADE IT! You are now free to explore the functionality of my Expense Tracker application. I hope you enjoy it as much as I did creating it!
-
-
-Some honest comments about my project:
-I spent a lot of the alloted time on finishing the MVPs of the project and planned to improve styling, update code structure, and implement pagination after completing all the base requirements. Unfortunately, I ran into a lot of issues when trying to host Postgresql through heroku and was not able to reach my goals. I truly wanted to impress with my frontend capabilities, but the form stylings and overall css does not meet my standards, but I hope the functionality is enough to impress. I'm still extremely proud of what I've built, but I was striving to go above and beyond your expectations so I apologize I couldn't do that for you this time around but hope I can show you my full capabilities in the future!
-
 
